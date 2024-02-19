@@ -16,6 +16,7 @@ from transformers import (
 )
 from Levenshtein import ratio as sim_ratio
 from load_datasets import DatasetManager
+from custom_trainer_callback import CustomTrainerCallback
 
 
 # Args
@@ -162,8 +163,9 @@ data_collator = DataCollatorForSeq2Seq(
 )
 
 # Callbacks
+callback = CustomTrainerCallback(vars(args))
 early_stopping = EarlyStoppingCallback(early_stopping_patience=args.early_stopping_patience)
-callbacks = [early_stopping]
+callbacks = [callback, early_stopping]
 
 # Training args
 training_args = Seq2SeqTrainingArguments(
