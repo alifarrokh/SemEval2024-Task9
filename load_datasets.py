@@ -21,10 +21,10 @@ class DatasetManager:
 
     def __clean_text(self, text):
         """Clean a piece of text"""
-        text = text.replace(',', ' , ')
+        text = text.replace(',', ', ')
         text = re.sub(r'\?+', '?', text)
         text = text.replace('\n', ' ')
-        text = re.sub(r'(\.\s?)+', ' . ', text)
+        text = re.sub(r'(\.\s?)+', '. ', text)
         text = re.sub(r'\s+', ' ', text).strip()
         if self.ignore_case:
             text = text.lower()
